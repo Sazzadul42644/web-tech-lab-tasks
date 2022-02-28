@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP validation</title>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form action="RegistrationAction.php" method="post" novalidate>
+        <fieldset>
+          <legend>Basic Information:</legend>
+            <label for="fname">First Name: (required)</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <label for="lname">Last Name:  (required)</label><br>
+            <input type="text" id="lname" name="lname"><br>
+            <label for="gender">Select Gender:  (required)</label><br>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label><br><br>
+            <label for="birthday">Date of Birth: (required)</label>
+            <input type="date" id="birthday" name="birthday"><br><br>
+            <label for="religion">Religion: (required)</label>
+            <select name="religion" id="religion">
+              <option value="islam">Islam</option>
+              <option value="hinduism">Hinduism</option>
+              <option value="buddhism">Buddhism</option>
+              <option value="christianity">Christianity</option>
+              <option value="other">Other</option>
+            </select>
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend>Contact Information:</legend>
+          <label for="present-address">Present Address: (required)</label><br>
+          <textarea name="present-address" id="present-address" cols="30" rows="4"></textarea><br>
+          <label for="premanent-address">Premanent Address:</label><br>
+          <textarea name="premanent-address" id="premanent-address" cols="30" rows="4"></textarea><br>
+          <label for="phone">phone:</label><br>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"> <br>
+          <label for="email">Email: (required)</label><br>
+          <input type="email" id="email" name="email"><br>
+          <label for="personal-website">Personal Website Link:</label><br>
+          <input type="url" id="personal-website" name="personal-website"><br>
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend>Credentials:</legend>
+          <label for="uname">User Name: (required)(max 5 characters)</label><br>
+          <input type="text" id="uname" name="uname"><br>
+          <label for="pass">Password: (required)(8 characters minimum):</label><br>
+          <input type="password" id="pass" name="pass"
+           minlength="8"> <br>
+          <label for="cpass">Confirm Password: (required)</label> <br>
+          <input type="password" id="cpass" name="cpass"
+            minlength="8"> <br>
+        </fieldset>
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+</body>
+</html>
