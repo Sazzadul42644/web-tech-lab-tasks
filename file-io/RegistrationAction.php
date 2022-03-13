@@ -23,15 +23,20 @@
 			$lastName = sanitize($_POST['lname']);
             $gender = $_POST['gender'];
             $dob = sanitize($_POST['birthday']);
-            $religion = sanitize($_POST['religion']);
+            $religion = $_POST['religion'];
             $presentAddr = sanitize($_POST['present-address']);
+            $premanentAddr = sanitize($_POST['premanent-address']);
+            $phone = sanitize($_POST['phone']);       
             $email = sanitize($_POST['email']);
+            $website = sanitize($_POST['personal-website']);
             $userName = sanitize($_POST['uname']);
             $pass = sanitize($_POST['pass']);
             $cpass = sanitize($_POST['cpass']);
 
             
-                echo $gender;
+            echo $gender . '\n'. $dob . '\n'. $religion . '\n';
+            //echo $religion;
+
             
             if(strlen($pass) > 6){
                 echo "password should max 5 characters";
@@ -41,10 +46,32 @@
                     if(empty($firstName) or empty($lastName) or empty($gender) or empty($dob) or empty($religion) or empty($presentAddr) or empty($email) or empty($userName) or empty($pass) or empty($cpass) ){
                         echo "please fill up all requires field.";
                     }
-                    else{
-                        
-                        
+                    else{                      
                         echo "Oparation successful";
+
+                        //echo $userName. " ". $pass. "\n";
+                        //define(FILENAME, "users.json")
+                        $handle = fopen("users.json", "r");
+
+                        $fr = fread($handle, filesize("users.json"));
+                        $decode = json_decode($fr);
+
+                        fclose($handle);
+
+                        $handle = fopen("users.json", "w");
+
+                        if($decode == NULL){
+                            $data = array(array('uname' => $userName, 'pass' => $pass, 'firstName' => $firstName, 'lastName' => $lastName, 'email' => $email, 'phone' => $phone, 'gender' => $gender, 'dob' => $dob, 'religion' => $religion, 'presentAddr' => $presentAddr, 'premanentAddr' => $premanentAddr, 'website' => $website));
+                            $data =json_encode($data);
+                            fwrite($handle, $data);
+                        }
+                        else{
+                            $decode[] = array('uname' => $userName, 'pass' => $pass, 'firstName' => $firstName, 'lastName' => $lastName, 'email' => $email, 'phone' => $phone, 'gender' => $gender, 'dob' => $dob, 'religion' => $religion, 'presentAddr' => $presentAddr, 'premanentAddr' => $premanentAddr, 'website' => $website);
+                            $data = json_encode($decode);
+                            fwrite($handle, $data);                       
+                        }
+
+                        fclose($handle);                       
                     }
                 }
             }
@@ -61,5 +88,8 @@
 
     <br><br>
     <a href="registration.html">Go Back</a>
+    <br><br>
+    <a href="login.php">Log in</a>
+    
 </body>
 </html>
