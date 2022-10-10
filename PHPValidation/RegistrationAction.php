@@ -18,7 +18,7 @@
 				$data = htmlspecialchars($data);
 				return $data;
             }
-            //mkifjvoifsasjm;fj
+            //Sazzadul
             $firstName = sanitize($_POST['fname']);
 			$lastName = sanitize($_POST['lname']);
             $gender = sanitize($_POST['gender']);
